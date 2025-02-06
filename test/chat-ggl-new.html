@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Chatbot</title>
+    <link rel="stylesheet" type="text/css" href="chat.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header"><img src="./logo.svg" alt="Logo" title="Logo" /></div>
+      <div class="title">
+        <h1>U.S. Immigration Chat Assistant</h1>
+        <h2>Get answers to your immigration questions</h2>
+      </div>
+      <div class="chatbot">
+        <div class="chatbot-heading">
+          <div class="avatar">
+            <img src="./cesare.svg" alt="Avatar" />
+          </div>
+          <div class="chatbot-heading-title">Cesare</div>
+        </div>
+        <div id="message-list"></div>
+        <div id="loading"></div>
+        <form id="chat-form" class="chat-form-section">
+          <input
+            type="text"
+            id="chat-input"
+            placeholder="Type your message..."
+          />
+          <button type="submit">
+            <img src="./btn.svg" alt="Send" />
+          </button>
+        </form>
+      </div>
+    </div>
+    <script
+      id="pixel-script-poptin"
+      src="https://cdn.popt.in/pixel.js?id=5c476a81673d9"
+      async="true"
+    ></script>
+    <script>
+      // Define variables for HTML elements
+      const messageList = document.getElementById("message-list");
+      const chatForm = document.getElementById("chat-form");
+      const chatInput = document.getElementById("chat-input");
+
+      // Send user message to server when form is submitted
+      chatForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const userMessage = chatInput.value.trim();
+        if (userMessage !== "") {
+          showLoadingAnimation();
+          const response = await fetch("http://127.0.0.1:5000/webhook", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ prompt: userMessage }),
+          });
+          const responseData = await response.json();
+          removeLoadingAnimation();
+          addMessage(userMessage, "user");
+          addMessage(responseData.response, "bot");
+          chatInput.value = "";
+        }
+      });
+
+      // Add message to the chatbot interface
+      function addMessage(message, sender) {
+        const messageElement = document.createElement("div");
+        messageElement.classList.add("message");
+        if (sender === "user") {
+          messageElement.innerHTML = `
+            <div class="user-message">${message}</div>
+          `;
+        } else if (sender === "bot") {
+          messageElement.innerHTML = `
+            <div class="bot-message">${message}</div>
+          `;
+        }
+        messageList.appendChild(messageElement);
+        messageList.scrollTop = messageList.scrollHeight;
+      }
+
+      // Show loading animation
+      function showLoadingAnimation() {
+        const messageElement = document.createElement("div");
+        messageElement.classList.add("message");
+        // messageElement.classList.add("bot-message");
+        // messageElement.innerHTML = `
+        //   <div class="loading">
+        //     <!--<div class="dot"></div>
+        //     <div class="dot"></div>
+        //     <div class="dot"></div> -->
+        //   </div>
+        //   <div class="bot-message">...</div>
+        // `;
+        messageElement.innerHTML = `<div class="bot-message"><div class="loading"></div></div>`;
+        messageList.appendChild(messageElement);
+        messageList.scrollTop = messageList.scrollHeight;
+      }
+
+      // Remove loading animation
+      function removeLoadingAnimation() {
+        const loadingElement = document.querySelector(".loading");
+        if (loadingElement) {
+          messageList.removeChild(loadingElement.parentElement);
+        }
+      }
+    </script>
+  </body>
+</html>

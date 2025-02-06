@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="72" height="72" viewBox="0 0 72 72">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#0080ff"/>
+      <stop offset="1" stop-color="#039aff"/>
+    </linearGradient>
+  </defs>
+  <g id="Group_36" data-name="Group 36" transform="translate(-267 -662)">
+    <g id="Group_32" data-name="Group 32" transform="translate(-791.667 70.333)">
+      <rect id="Rectangle_6" data-name="Rectangle 6" width="72" height="72" rx="36" transform="translate(1058.667 591.667)" fill="url(#linear-gradient)"/>
+    </g>
+    <path id="Icon_material-chat-bubble" data-name="Icon material-chat-bubble" d="M30,3H6A3.009,3.009,0,0,0,3,6V33l6-6H30a3.009,3.009,0,0,0,3-3V6A3.009,3.009,0,0,0,30,3Z" transform="translate(285 680)" fill="#fff"/>
+  </g>
+</svg>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chatbot</title>
+    <link rel="stylesheet" type="text/css" href="chat.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header"><img src="./logo.svg" alt="Logo" title="Logo" /></div>
+      <div class="title">
+        <h1>U.S. Immigration Chat Assistant</h1>
+        <h2>Get answers to your immigration questions</h2>
+      </div>
+      <div class="chatbot">
+        <div class="chatbot-heading">
+          <div class="avatar">
+            <img src="./cesare.svg" alt="Avatar" />
+          </div>
+          <div class="chatbot-heading-title">Cesare</div>
+          <div class="sub-text">We reply within seconds.</div>
+        </div>
+        <div class="message-wrapper">
+          <div id="message-list"></div>
+        </div>
+
+        <div id="loading"></div>
+        <form id="chat-form" class="chat-form-section">
+          <input
+            type="text"
+            id="chat-input"
+            placeholder="Type your message..."
+          />
+          <button type="submit"><img src="./btn.svg" alt="Send" /></button>
+        </form>
+      </div>
+      <div class="disclaimer">
+        <p>
+          Ask Immigration GPT offers insights from a broad knowledge base.
+          However, it's not a substitute for professional legal advice. The info
+          given is educational and may not apply to your specific case due to
+          the complex and changing nature of immigration laws. Always consult
+          with a qualified immigration attorney for personalized advice.
+        </p>
+      </div>
+    </div>
+
+    <script>
+      // Define variables for HTML elements
+      const messageList = document.getElementById("message-list");
+      const chatForm = document.getElementById("chat-form");
+      const chatInput = document.getElementById("chat-input");
+      // Intro message
+      messageList.scrollTop = messageList.scrollHeight;
+      const text =
+        "Hi, I’m Cesare, your virtual assistant. I'm programmed to help you with questions regarding immigration. What would you like to ask me?";
+      const messageElement = document.createElement("div");
+      messageElement.classList.add("message");
+      messageElement.innerHTML = `<div class="bot-message"><div class="intro"></div></div>`;
+      messageList.appendChild(messageElement);
+      messageList.scrollTop = messageList.scrollHeight;
+      let i = 0;
+
+      function typeWriter() {
+        if (i < text.length) {
+          messageElement.querySelector(".intro").innerHTML += text.charAt(i);
+          i++;
+          setTimeout(typeWriter, 30);
+        }
+      }
+
+      typeWriter();
+
+      // Send user message to server when form is submitted
+      chatForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const userMessage = chatInput.value.trim();
+        if (userMessage !== "") {
+          addMessage(userMessage, "user");
+          chatInput.value = "";
+          chatInput.readOnly = true;
+          showLoadingAnimation();
+          const response = await fetch("http://127.0.0.1:5000/webhook", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ prompt: userMessage }),
+          });
+          const responseData = await response.json();
+          removeLoadingAnimation();
+          addMessage(responseData.response, "bot");
+          chatInput.readOnly = false;
+        }
+      });
+
+      // Add message to the chatbot interface
+      function addMessage(message, sender) {
+        const messageElement = document.createElement("div");
+        messageElement.classList.add("message");
+        if (sender === "user") {
+          messageElement.innerHTML = `
+            <div class="user-message">${message}</div>`;
+        } else if (sender === "bot") {
+          messageElement.innerHTML = `
+            <div class="bot-message">${message}</div>`;
+        }
+        messageList.appendChild(messageElement);
+        messageList.scrollTop = messageList.scrollHeight;
+      }
+
+      // Show loading animation
+      function showLoadingAnimation() {
+        const messageElement = document.createElement("div");
+        messageElement.classList.add("message");
+        messageElement.innerHTML = `<div class="bot-message"><div class="loading"></div></div>`;
+        messageList.appendChild(messageElement);
+        messageList.scrollTop = messageList.scrollHeight;
+      }
+
+      function removeLoadingAnimation() {
+        const loadingElement = document.querySelector(".loading");
+        if (loadingElement) {
+          const parentElement = loadingElement.closest(".message");
+          if (parentElement) {
+            messageList.removeChild(parentElement);
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

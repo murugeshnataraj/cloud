@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Have Immigration Questions? Get Answers Here</title>
+    <!-- <link rel="stylesheet" type="text/css" href="chatbot.css" /> -->
+    <style>
+      @font-face {
+        font-display: swap;
+        font-family: Lato;
+        font-style: normal;
+        font-weight: 400;
+        src: url("./fonts/lato-regular.woff2") format("woff2"),
+          url("./fonts/lato-regular.ttf") format("truetype");
+      }
+      @font-face {
+        font-display: swap;
+        font-family: Lato;
+        font-style: normal;
+        font-weight: 700;
+        src: url("./fonts/lato-700.woff2") format("woff2"),
+          url("./fonts/lato-700.ttf") format("truetype");
+      }
+      @font-face {
+        font-display: swap;
+        font-family: Lato;
+        font-style: normal;
+        font-weight: 900;
+        src: url("./fonts/lato-900.woff2") format("woff2"),
+          url("./fonts/lato-900.ttf") format("truetype");
+      }
+      .chatbot,body{height:100%;font-family:Lato,sans-serif}.chat-form-section input,.chatbot,.sub-text,.title h1,.user-message,body,pre{font-family:Lato,sans-serif}.chatbot-heading,body{background-repeat:no-repeat;background-size:cover}.chatbot,.chatbot-heading,.loading{position:relative}body{margin:0;padding:0;background-image:url("./bg.png");background-position:top left;min-height:100vh}.container{max-width:1200px;margin:0 auto;padding:0 10px}.chat-section{width:100%;display:flex;flex-direction:row;justify-content:center;align-items:center}.chat-section-left{width:40%;margin-right:5%}.chat-section-right{width:55%}.header{padding:10px}.title{text-align:left;color:#fff}.title h1{font-size:48px;font-weight:700;color:#fff;margin:0 0 8px}.chatbot-heading-title,.disclaimer p,.title h2{font-weight:400;font-family:Lato,sans-serif}.title h2{font-size:24px;margin:0 0 20px}.chatbot-heading{border-radius:20px 20px 0 0;background-image:url("./wave.svg");background-position:0 -3px;padding:0;min-height:118px}.avatar{display:inline-block;vertical-align:middle;margin:10px 10px 5px}.avatar img{width:42px}.chatbot-heading-title{font-size:18px;display:inline-block;color:#fff}.sub-text{padding:0 15px 10px;font-size:12px;color:#abbbff}.chatbot{max-width:460px;width:100%;min-height:490px;margin:15px auto;border-radius:20px;background-color:#fff;padding:0 0 30px}.bot-message,.user-message,pre{word-wrap:break-word;width:fit-content}.bot-message,.user-message{border-radius:10px;max-width:85%}.message{display:flex;flex-direction:column;margin-bottom:10px}.user-message{align-self:flex-end;background-color:#007bff;color:#fff;padding:10px}.bot-message{align-self:flex-start;background-color:#f6f6f6;color:#333;padding:15px}.chat-form-section input,button{border:none;display:table-cell;vertical-align:middle}pre{font-size:16px;white-space:pre-wrap;overflow-wrap:break-word;margin:0!important}.bot-message a{text-decoration:none}.chat-form-section{padding-left:0;padding-top:10px;position:relative;width:100%;display:table;max-width:90%;margin:0 auto;border-top:1.5px solid #d6d6d6;background:#fff}.chat-form-section input{padding:13px 4px;width:82%;font-size:15px;color:#555}.chat-form-section input::placeholder{color:#d6d6d6}.chat-form-section input::-webkit-placeholder{color:#d6d6d6}.chat-form-section input::-moz-placeholder{color:#d6d6d6}.chat-form-section input:active,.chat-form-section input:focus,.chat-form-section input:focus-visible{border:none;outline:0}button{outline:0;background-color:transparent;cursor:pointer;position:absolute;right:-50px;top:15px}.loading,.loading:after,.loading:before{width:5px;height:5px;border-radius:5px;background-color:#8f8f8f;color:#8f8f8f}.chat-bubble img,button img{width:48px}.disclaimer{margin:45px 5px}.disclaimer p{font-size:16px;color:#fff;text-align:center;line-height:1.2}.loading{animation:1s linear .5s infinite alternate dot-flashing;margin:0 10px}.loading:after,.loading:before{content:"";display:inline-block;position:absolute;top:0}.loading:before{left:-10px;animation:1s infinite alternate dot-flashing}.loading:after{left:10px;animation:1s 1s infinite alternate dot-flashing}@keyframes dot-flashing{0%{background-color:#8f8f8f}100%,50%{background-color:#333}}.message-wrapper{margin-top:10px;height:360px;padding:10px 15px 45px;display:flex;flex-direction:column}#message-list{overflow-y:scroll;flex:1}#message-list::-webkit-scrollbar{width:2px;margin:5px 0 5px 5px}#message-list::-webkit-scrollbar-track{background:#fff;margin:5px 0 5px 5px}#message-list::-webkit-scrollbar-thumb{background:#fff}#message-list::-webkit-scrollbar-thumb:hover{background:#fff}input:-webkit-autofill{-webkit-box-shadow:0 0 0 30px #fff inset!important;-webkit-text-fill-color:black!important}input:-webkit-autofill:focus{-webkit-box-shadow:0 0 0 30px #fff inset!important;-webkit-text-fill-color:black!important}.chat-bubble{position:fixed;bottom:16px;right:16px;cursor:pointer;display:none}@media (max-width:900px){.title h1{font-size:38px}button{right:0;top:10px;padding:0}}@media (max-width:767px){body{background-image:url("./mobile-bg.png")}.container{max-width:98%}.title{text-align:center}.chat-bubble,.title .avatar{display:none}.title h1{font-size:26px}.title h1 span{display:block;font-size:21px;font-weight:500;padding-top:10px}.title h2{font-size:18px}.chatbot-heading-title{font-size:16px}.bot-message,.chat-form-section input,.disclaimer p,.user-message,pre{font-size:14px}button img{width:36px}button{right:0;top:10px;padding:0}.chatbot-heading{min-height:105px}.avatar img{width:42px}.chatbot{min-height:370px;padding-bottom:10px;position:relative}#message-list{height:280px}.chat-form-section{padding-top:4px;position:absolute;left:15px;bottom:10px}.message-wrapper{height:315px;padding-bottom:45px}.chat-section{flex-direction:column;justify-content:start;height:100%}.chat-section-mobile{justify-content:start!important;height:100%}.chat-section-left,.chat-section-right{width:100%;margin:0}.chat-section-right,.disclaimer{display:block}}
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="header"><img src="./logo.svg" alt="Logo" title="Logo" /></div>
+      <div class="chat-section" id="ChatSection">
+        <div class="chat-section-left" id="ChatSectionLeft">
+          <div class="title">
+            <h1>Have Immigration Questions? <span>Get Answers Here</span></h1>
+            <!-- <h2>Get answers to your immigration questions</h2> -->
+            <div class="avatar">
+              <img src="./cesare.png" alt="Avatar" />
+            </div>
+          </div>
+        </div>
+        <div class="chat-section-right" id="ChatSectionRight">
+          <div class="chatbot">
+            <div class="chatbot-heading">
+              <div class="avatar">
+                <img src="./cesare.png" alt="Avatar" />
+              </div>
+              <div class="chatbot-heading-title">Cesare</div>
+              <div class="sub-text">We reply within seconds.</div>
+            </div>
+            <div class="message-wrapper">
+              <div id="message-list"></div>
+            </div>
+            <div id="loading"></div>
+            <form id="chat-form" class="chat-form-section">
+              <input
+                type="text"
+                id="chat-input"
+                placeholder="Type your message..."
+              />
+              <button type="submit"><img src="./send.svg" alt="Send" /></button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="disclaimer" id="ChatDisclaimer">
+        <p>
+          Ask Immigration GPT offers insights from a broad knowledge base.
+          However, it's not a substitute for professional legal advice. The info
+          given is educational and may not apply to your specific case due to
+          the complex and changing nature of immigration laws. Always consult
+          with a qualified immigration attorney for personalized advice.
+        </p>
+      </div>
+    </div>
+
+    <script>
+      // Define variables for HTML elements
+      const messageList = document.getElementById("message-list");
+      const chatForm = document.getElementById("chat-form");
+      const chatInput = document.getElementById("chat-input");
+
+      // Generate a dynamic user ID
+      const user_id = generateUserID();
+
+      // Intro message
+      messageList.scrollTop = messageList.scrollHeight;
+      const text =
+        "Hi, I’m Cesare, your virtual assistant. I'm programmed to help you with questions regarding immigration. What would you like to ask me?";
+      const messageElement = document.createElement("div");
+      messageElement.classList.add("message");
+      messageElement.innerHTML = `<div class="bot-message"><div class="intro"></div></div>`;
+      messageList.appendChild(messageElement);
+      messageList.scrollTop = messageList.scrollHeight;
+      let i = 0;
+
+      function typeWriter() {
+        if (i < text.length) {
+          messageElement.querySelector(".intro").innerHTML += text.charAt(i);
+          i++;
+          setTimeout(typeWriter, 40);
+        }
+      }
+
+      typeWriter();
+
+      // Send user message to server when form is submitted
+      chatForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const userMessage = chatInput.value.trim();
+        if (userMessage !== "") {
+          addMessage(userMessage, "user");
+          chatInput.value = "";
+          chatInput.readOnly = true;
+          showLoadingAnimation();
+          const response = await fetch(
+            "https://l2w0f61kn4.execute-api.us-west-2.amazonaws.com/default/Chat-2023/webhook",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ user_id: user_id, prompt: userMessage }),
+            }
+          );
+          const responseData = await response.json();
+          console.log("Response Data:", responseData);
+          if (responseData.body) {
+            const responseBody = JSON.parse(responseData.body);
+            if (responseBody.response) {
+              const botMessage = responseBody.response;
+
+              addMessage(botMessage, "bot");
+            } else {
+              console.error("Invalid response format:", responseData);
+            }
+          } else {
+            console.error("Invalid response format:", responseData);
+          }
+          removeLoadingAnimation();
+          chatInput.readOnly = false;
+        }
+      });
+
+      // Add message to the chatbot interface
+      function addMessage(message, sender) {
+        const messageElement = document.createElement("div");
+        messageElement.classList.add("message");
+        if (sender === "user") {
+          messageElement.innerHTML = `<div class="user-message">${message}</div>`;
+        } else if (sender === "bot") {
+          messageElement.innerHTML = `<div class="bot-message">${message}</div>`;
+        }
+        messageList.appendChild(messageElement);
+        messageList.scrollTop = messageList.scrollHeight;
+      }
+
+      // Show loading animation
+      function showLoadingAnimation() {
+        const messageElement = document.createElement("div");
+        messageElement.classList.add("message");
+        messageElement.innerHTML = `<div class="bot-message"><div class="loading"></div></div>`;
+        messageList.appendChild(messageElement);
+        messageList.scrollTop = messageList.scrollHeight;
+      }
+
+      function removeLoadingAnimation() {
+        const loadingElement = document.querySelector(".loading");
+        if (loadingElement) {
+          const parentElement = loadingElement.closest(".message");
+          if (parentElement) {
+            messageList.removeChild(parentElement);
+          }
+        }
+      }
+
+      // Generate a dynamic user ID
+      function generateUserID() {
+        return Date.now().toString(36) + Math.random().toString(36).substr(2);
+      }
+    </script>
+  </body>
+</html>

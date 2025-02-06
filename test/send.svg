@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="54" height="54" viewBox="0 0 54 54">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="red"/>
+      <stop offset="1" stop-color="#8e0000"/>
+    </linearGradient>
+  </defs>
+  <g id="Group_37" data-name="Group 37" transform="translate(-1115 -581)">
+    <g id="Group_22" data-name="Group 22" transform="translate(56 -11)">
+      <rect id="Rectangle_6" data-name="Rectangle 6" width="54" height="54" rx="27" transform="translate(1059 592)" fill="url(#linear-gradient)"/>
+    </g>
+    <g id="Icon_feather-send" data-name="Icon feather-send" transform="translate(1127.667 593.667)">
+      <path id="Path_17" data-name="Path 17" d="M25.667,2.333,12.833,15.167" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.333"/>
+      <path id="Path_18" data-name="Path 18" d="M25.667,2.333,17.5,25.667l-4.667-10.5L2.333,10.5Z" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.333"/>
+    </g>
+  </g>
+</svg>
